@@ -1,26 +1,46 @@
 import numpy as np
 
-def calculate(list):
+def calculate(data):
+    # Converte a lista em uma matriz 3x3
+    matriz = np.array(data).reshape(3, 3)
 
-    matriz = np.array(list).reshape(3, 3)
-
-    # mean = []
-    # mean.append(np.mean(matriz, axis=0, dtype=np.int8))
-    # mean.append(np.mean(matriz, axis=0, dtype=np.int8))
-    # print(mean)
-
+    # Cálculos
     calculations = {
-        'Mean': {
-            'axis1': np.mean(matriz, axis=0, dtype=np.int8).tolist(),
-            'axis2': np.mean(matriz, axis=0, dtype=np.int8).tolist(),
-            'flattened': int(np.mean(list, dtype=np.int8))
-        },
-        'Variance': {
-        },
+        'mean': [
+            np.mean(matriz, axis=0).tolist(), # Média ao longo das colunas
+            np.mean(matriz, axis=1).tolist(), # Média ao longo das linhas
+            np.mean(matriz).tolist()          # Média achatada
+        ],
+        'variance': [
+            np.var(matriz, axis=0).tolist(),  # Variância ao longo das colunas
+            np.var(matriz, axis=1).tolist(),  # Variância ao longo das linhas
+            np.var(matriz).tolist()           # Variância achatada
+        ],
+        'standard deviation': [
+            np.std(matriz, axis=0).tolist(),  # Desvio padrão ao longo das colunas
+            np.std(matriz, axis=1).tolist(),  # Desvio padrão ao longo das linhas
+            np.std(matriz).tolist()           # Desvio padrão achatado
+        ],
+        'max': [
+            np.max(matriz, axis=0).tolist(),  # Máximo ao longo das colunas
+            np.max(matriz, axis=1).tolist(),  # Máximo ao longo das linhas
+            np.max(matriz).tolist()           # Máximo achatado
+        ],
+        'min': [
+            np.min(matriz, axis=0).tolist(),  # Mínimo ao longo das colunas
+            np.min(matriz, axis=1).tolist(),  # Mínimo ao longo das linhas
+            np.min(matriz).tolist()           # Mínimo achatado
+        ],
+        'sum': [
+            np.sum(matriz, axis=0).tolist(),  # Soma ao longo das colunas
+            np.sum(matriz, axis=1).tolist(),  # Soma ao longo das linhas
+            np.sum(matriz).tolist()           # Soma achatada
+        ],
     }
-    print(calculations)
 
     return calculations
 
-list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-calculate(list)
+# Dados de exemplo
+lista = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+result = calculate(lista)
+print(result)
